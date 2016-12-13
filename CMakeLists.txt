@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+add_compile_options( -std=c++11 -lopencv_core)
+set(OpenCV_DIR "/usr/local/lib/opencv")
+project( RNN )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( RNN src/dataReader.cpp src/RNNTrainer.cpp )
+target_link_libraries( RNN ${OpenCV_LIBS} )
