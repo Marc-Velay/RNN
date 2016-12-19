@@ -24,6 +24,7 @@ using namespace cv;
 #define NB_TARGETS 2
 
 extern float training_percent;
+extern int maxEpochs;
 
 extern double lrate_weights;
 extern double lrate_bias;
@@ -36,6 +37,8 @@ double getSetAccuracy( std::vector<dataEntry*>& set, std::vector<Hl> &HiddenLaye
 double getSetMSE( std::vector<dataEntry*>& set, std::vector<Hl> &HiddenLayers, Smr &smr);
 void feedForward(vector<dataEntry*> trainingSet, std::vector<Hl> &HiddenLayers, Smr &smr);
 void getNetworkCost(dataEntry* trainingPoint, std::vector<Hl> &hLayers, Smr &smr);
+void testNetwork(vector<dataEntry*> trainingSet, std::vector<Hl> &hLayers, Smr &smr);
+Mat resultPredict(vector<dataEntry*> trainingSet, int start, int end, std::vector<Hl> &hLayers, Smr &smr);
 
 
 class RNNTrainer {
@@ -56,7 +59,6 @@ class RNNTrainer {
         void runTrainingEpoch(vector<dataEntry*> trainingSet, std::vector<Hl> &HiddenLayers, Smr &smr);
 
 
-        long maxEpochs;
         double trainingSetAccuracy;
         double validationSetAccuracy;
         double generalizationSetAccuracy;
